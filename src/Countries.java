@@ -25,9 +25,10 @@ public class Countries {
 
     public static void buildUserList() throws IOException {
         System.out.println("Please input the letter the countries start with.");
-        String userLetter = scanner.nextLine();
+
         boolean a = true;
         while (a) {
+            String userLetter = scanner.nextLine();
             if (!(userLetter.isEmpty() || userLetter.length() >= 2)) {
 
                 List newFile = allCountries.get(userLetter);
@@ -62,12 +63,13 @@ public class Countries {
     static void buildMap() throws FileNotFoundException {
         File f = new File("countries.txt");
         Scanner fileScanner = new Scanner(f);
+        Country country;
 
         while (fileScanner.hasNext()) {
             String key;
             String line = fileScanner.nextLine();
             String[] columns = line.split("\\|");
-            Country country = new Country(columns[0], columns[1]);
+            country = new Country(columns[0], columns[1]);
             key = country.getName().substring(0, 1);
             if (country.getName().startsWith(key)) {
                 if (allCountries.containsKey(key)) {
